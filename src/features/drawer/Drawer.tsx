@@ -1,37 +1,37 @@
+import { useState } from "react";
 import Icon from "../../components/Icon";
 
 const Drawer = () => {
+    const [position, setPosition] = useState("35px");
+    function handleMouseMove(e?: any) {
+        const position = e.pageY / 10;
+        setPosition(position + "px");
+    }
+
+    function handleMouseLeave() {
+        setPosition("45px");
+    }
+
     return (
-        <div
-            style={{
-                height: "100vh",
-                width: "2.5%",
-                display: "flex",
-                alignItems: "center",
-                padding: "0 16px"
-            }}
-        >
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "red",
-                        borderRadius: "50%",
-                        width: 38,
-                        height: 38,
-                        marginBottom: 42,
-                        boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
-                    }}
-                >
-                    <Icon name="plus" size={32} />
-                </div>
-                <Icon name="plus" size={32} />
-                <Icon name="plus" size={32} />
-                <Icon name="plus" size={32} />
-                <Icon name="plus" size={32} />
-            </div>
+        <div onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="drawer-wrapper">
+            <div className="drawer-indicator" style={{ top: position }} />
+            <div style={{ height: "8rem" }}>Logo</div>
+            <button className="drawer-link active">
+                <Icon name="plus" />
+                <span style={{ letterSpacing: 1.6, fontWeight: "700", fontSize: 14 }}>DASHBOARD</span>
+            </button>
+            <a href="/docs-list" className="drawer-link">
+                <Icon name="plus" />
+                <span style={{ letterSpacing: 1.6, fontWeight: "700", fontSize: 14 }}>DOCS</span>
+            </a>
+            <button className="drawer-link">
+                <Icon name="plus" />
+                <span style={{ letterSpacing: 1.6, fontWeight: "700", fontSize: 14 }}>STUDIO</span>
+            </button>
+            <button className="drawer-link">
+                <Icon name="plus" />
+                <span style={{ letterSpacing: 1.6, fontWeight: "700", fontSize: 14 }}>SETTINGS</span>
+            </button>
         </div>
     );
 };

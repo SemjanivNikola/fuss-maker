@@ -1,7 +1,16 @@
 const DEFAULT_ICON_SIZE = 24;
 
+type IconName =
+    | "open-drawer"
+    | "close-drawer"
+    | "chevron-left"
+    | "chevron-right"
+    | "account"
+    | "create-account"
+    | "plus";
+
 type IconType = {
-    name: string;
+    name: IconName;
     size?: number;
     color?: string;
 };
